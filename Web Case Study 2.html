@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs Section with Animation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: left;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #eb98bb;
+            padding: 20px;
+            border-radius: 5px;
+            height: 380px;
+            width: 65%;
+            margin: auto;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-section img {
+            width: 390px;
+            height: 375px;
+            border-radius: 3px;
+            margin-right: 20px;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .tabs-section {
+            flex: 1;
+            background: #ffe6e6;
+            padding: 20px;
+            border-radius: 5px;
+            width: 420px;
+            height: 340px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabs {
+            display: flex;
+        }
+
+        .tab-button {
+            background: #d3d3d3;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            flex: 1;
+            transition: background 0.1s ease;
+            border-radius: 1px;
+        }
+
+        .tab-button.active {
+            background: #87CEFA;
+            font-weight: bold;
+            color: white;
+        }
+
+        .tab-content {
+            background: #ffe6e6;
+            padding: 15px;
+            border-radius: 1px;
+            text-align: left;
+            display: none;
+            animation: fadeIn 0s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Tabs Section Project - HTML, CSS, JavaScript</h1>
+
+    <div class="container">
+        <div class="image-section">
+            <img id="tab-image" src="https://i.guim.co.uk/img/media/6c36faa8209eb3195c80f7ada81caa4892479b53/0_276_5000_3000/master/5000.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=a3b106a7cedd8e4db46af4c39b779ea6" >
+        </div>
+        <div class="tabs-section">
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab(event, 'step1', 'https://i.guim.co.uk/img/media/6c36faa8209eb3195c80f7ada81caa4892479b53/0_276_5000_3000/master/5000.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=a3b106a7cedd8e4db46af4c39b779ea6')">Step 1</button>
+                <button class="tab-button" onclick="openTab(event, 'step2', 'https://www.fabhotels.com/blog/wp-content/uploads/2019/05/Gateway-Of-India_600-1.jpg')">Step 2</button>
+                <button class="tab-button" onclick="openTab(event, 'step3', 'https://i.pinimg.com/736x/1a/62/c3/1a62c309f522284076611e89b4288742.jpg')">Step 3</button>
+            </div>
+            <div class="tab-content" id="step1" style="display: block;">
+                <h3>Taj Mahal</h3>
+                <p style="font-size: small;">The Taj Mahal, located in Agra, Uttar Pradesh, is one of the most famous monuments in the world. Built by Mughal Emperor Shah Jahan in 1632 in memory of his beloved wife Mumtaz Mahal, it is an architectural masterpiece made of white marble. Recognized as a UNESCO World Heritage Site, the Taj Mahal is admired for its symmetry, intricate carvings, calligraphy, and stunning gardens. Situated on the banks of the Yamuna River, it is also one of the Seven Wonders of the World, attracting millions of tourists every year.</p>
+            </div>
+            <div class="tab-content" id="step2">
+                <h3>Gate Way Of India</h3>
+                <p style="font-size: small;">The Gateway of India, located in Mumbai, Maharashtra, is a historic monument that was built in 1924 to commemorate the visit of King George V and Queen Mary to India in 1911. Made of basalt stone, it is a blend of Indo-Saracenic and Islamic architectural styles. Overlooking the Arabian Sea, it stands as a symbol of British colonial rule in India. The Gateway of India also holds historical significance as it was the departure point of British troops after India's independence in 1947. Today, it is one of Mumbai’s most popular tourist attractions.</p>
+            </div>
+            <div class="tab-content" id="step3">
+                <h3>Charminar</h3>
+                <p style="font-size: small;">The Charminar, situated in Hyderabad, Telangana, is an iconic structure built in 1591 by Sultan Muhammad Quli Qutb Shah. It is a square-shaped monument with four grand arches and towering minarets, each 56 meters tall. The Charminar is a symbol of Hyderabad’s rich Islamic culture and history and is believed to have been constructed to mark the end of a deadly plague that once affected the city. Located in the bustling Laad Bazaar, the monument is surrounded by markets famous for Hyderabadi pearls, bangles, and street food, making it a lively tourist attraction.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(event, tabId, imageUrl) {
+            let tabContents = document.querySelectorAll('.tab-content');
+            let tabButtons = document.querySelectorAll('.tab-button');
+
+            tabContents.forEach(content => content.style.display = 'none');
+            tabButtons.forEach(button => button.classList.remove('active'));
+
+            document.getElementById(tabId).style.display = 'block';
+            event.currentTarget.classList.add('active');
+            let image = document.getElementById('tab-image');
+            image.style.opacity = 0;
+            setTimeout(() => {
+                image.src = imageUrl;
+                image.style.opacity = 1; 
+            }, 300);
+        }
+    </script>
+
+</body>
+</html>
